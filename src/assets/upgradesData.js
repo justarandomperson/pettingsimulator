@@ -16,19 +16,19 @@ const upgradesData = readable([
     {
         name: "amateur petter",
         description: `hire a amateur petter to pet for you! (+2 Pets Per Second)`,
-        price: 100,
+        price: 50,
         upgrade: ["pts", 2]
     },
     {
         name: "intermediate petter",
         description: `hire an intermediate petter to pet for you! (+10 Pets Per Second)`,
-        price: 500,
+        price: 250,
         upgrade: ["pts", 10]
     },
     {
         name: "expert petter",
         description: `hire an expert petter to pet for you! (+100 Pets Per Second)`,
-        price: 5000,
+        price: 1000,
         upgrade: ["pts", 100]
     },
     {
