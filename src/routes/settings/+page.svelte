@@ -13,7 +13,7 @@
 
     const eraseData = () => {
         if (window.prompt("are you SURE (type yes if sure)") != "yes") return 
-        playerData.set({...defaultData})}
+        playerData.set(JSON.parse(JSON.stringify(defaultData)))}
 
     const newInput = (e, target, i) => {
         plrData.settings[target][i] = e.target.value
