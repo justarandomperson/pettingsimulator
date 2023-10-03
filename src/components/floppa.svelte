@@ -1,6 +1,5 @@
 <script>
-    export let src
-    export let onclick
+    export let src,onclick
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->

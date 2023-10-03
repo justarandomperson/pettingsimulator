@@ -1,31 +1,18 @@
 <script>
     import { get } from 'svelte/store'
-    import playerData from '../../assets/playerData'
+    import {playerData, defaultData} from '../../assets/data/playerData'
 
     let plrData
     playerData.subscribe(data => plrData = data)
     
-    const returnToDefault = () => {
-        plrData.settings = {
-            images: ["https://i1.sndcdn.com/avatars-Why2guyttlTy7IKw-P2j7wA-t240x240.jpg","https://media.tenor.com/Pi1F-uhfyRAAAAAC/floppa-petthefloppa.gif"]
-        }
+    const returnToDefaultSettings = () => {
+        plrData.settings = defaultData.settings
         playerData.set(plrData)
     }
 
     const eraseData = () => {
         if (window.prompt("are you SURE (type yes if sure)") != "yes") return 
-        playerData.set({
-        pets: 0,
-        petPower: 1,
-        pts: 0,
-        upgradeLevels: [
-            1,1,1,1,1,1
-        ],
-        settings: {
-            images: ["https://i1.sndcdn.com/avatars-Why2guyttlTy7IKw-P2j7wA-t240x240.jpg","https://media.tenor.com/Pi1F-uhfyRAAAAAC/floppa-petthefloppa.gif"]
-        }
-        
-    })}
+        playerData.set({...defaultData})}
 
     const newInput = (e, target, i) => {
         plrData.settings[target][i] = e.target.value
@@ -47,5 +34,5 @@
         </div>
         <button class="border-2 text-xl border-black w-40 text-white bg-red-600" on:click|preventDefault={eraseData}>ERASE DATA</button>
     </div>
-    <button class="font-bold absolute ml-[50%] mb-5 translate-x-[-50%] bottom-0 border-2 text-xl border-black w-60 p-2 text-black bg-white hover:bg-gray-400" on:click={returnToDefault}>Return to default settings</button>
+    <button class="font-bold absolute ml-[50%] mb-5 translate-x-[-50%] bottom-0 border-2 text-xl border-black w-60 p-2 text-black bg-white hover:bg-gray-400" on:click={returnToDefaultSettings}>Return to default settings</button>
 </div>

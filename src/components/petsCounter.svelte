@@ -1,6 +1,5 @@
 <script>
-    export let pets
-    export let pts
+    export let pets,pts
 </script>
 
 <div>
