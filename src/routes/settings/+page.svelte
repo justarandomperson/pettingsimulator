@@ -6,8 +6,9 @@
     playerData.subscribe(data => plrData = data)
     
     const returnToDefaultSettings = () => {
-        plrData.settings = defaultData.settings
-        playerData.set(plrData)
+        const newData = JSON.parse(JSON.stringify(plrData))
+        newData.settings = JSON.parse(JSON.stringify(defaultData.settings))
+        playerData.set(newData)
     }
 
     const eraseData = () => {
@@ -34,5 +35,5 @@
         </div>
         <button class="border-2 text-xl border-black w-40 text-white bg-red-600" on:click|preventDefault={eraseData}>ERASE DATA</button>
     </div>
-    <button class="font-bold absolute ml-[50%] mb-5 translate-x-[-50%] bottom-0 border-2 text-xl border-black w-60 p-2 text-black bg-white hover:bg-gray-400" on:click={returnToDefaultSettings}>Return to default settings</button>
+    <button class="font-bold absolute ml-[50%] mb-5 translate-x-[-50%] bottom-0 border-2 text-xl border-black w-60 p-2 text-black bg-white hover:bg-gray-400" on:click|preventDefault={returnToDefaultSettings}>Return to default settings</button>
 </div>
