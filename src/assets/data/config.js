@@ -1,11 +1,11 @@
 import { readable } from 'svelte/store';
 
-const exponentialRate = 1.01
+const exponentialRate = 1.5
 
 const config = readable({
     ExponentialRate: exponentialRate,
     formulaFunction: (level, basePrice) => {
-        return (level+1)**exponentialRate * basePrice
+        return Math.floor((level+1)**exponentialRate + basePrice)
     }
 });
 
