@@ -1,6 +1,6 @@
 import { readable } from 'svelte/store';
 
-const exponentialRate = 1.1
+const exponentialRate = 1.01
 
 const config = readable({
     ExponentialRate: exponentialRate,
