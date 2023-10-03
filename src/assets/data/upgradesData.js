@@ -33,7 +33,7 @@ const upgradesData = readable([
     },
     {
         name: "auto petter machine",
-        description: `get a auto petter machine to pet for you! (+2500 Pets Per Second)`,
+        description: `get an auto petter machine to pet for you! (+2500 Pets Per Second)`,
         price: 22500,
         upgrade: ["pts", 2500]
     }
