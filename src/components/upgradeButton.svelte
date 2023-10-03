@@ -1,5 +1,14 @@
 <script>
-    export let name,description,price,pets,level,onUpgrade,i,buyQuantity
+    import { playerData } from "../assets/data/playerData";
+    import { checkifCanUpgrade } from "../assets/utils";
+    
+    export let name,description,pets,onUpgrade,i
+
+    let plrData
+    let price 
+    $: buyQuantity = plrData.buyQuantity
+    $: level = plrData.upgradeLevels[i]
+    playerData.subscribe(data => {plrData=data; price = checkifCanUpgrade(i,buyQuantity).totalPrice})
 </script>
 
 <div class="flex w-4/5 border-4 border-black font-bold mb-5 md:w-1/2 bg-white" title="{description}">

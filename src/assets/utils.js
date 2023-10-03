@@ -40,12 +40,14 @@ export const buyMax = (basePrice,level,rate,money) => {
 export const onUpgrade = (i) => {
     const plrData = get(playerData)
     const {buyQuantity} = plrData
+    const upgradeData = upgData[i]
 
     const {totalPrice, canBuy} = checkifCanUpgrade(i, buyQuantity)
 
     if (canBuy) {
         const newData = plrData;
         newData.pets -= totalPrice;
+        newData[upgradeData.upgrade[0]]+=upgradeData.upgrade[1]*buyQuantity
         newData.upgradeLevels[i]+=buyQuantity;
     }
 }

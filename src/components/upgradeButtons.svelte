@@ -2,12 +2,8 @@
     import { playerData } from "../assets/data/playerData";
     import QuantityButtons from "../components/quantityButtons.svelte";
 
-    import { get } from "svelte/store";
-
-    import {checkifCanUpgrade} from '../assets/utils'
-
     import UpgradeButton from "./upgradeButton.svelte";
-    export let buttons, pets, levels,onUpgrade
+    export let buttons, pets,onUpgrade
 
     let plrData
     playerData.subscribe(data => plrData=data)
@@ -19,7 +15,7 @@
    <QuantityButtons/>
     <div class="flex flex-col items-center mt-10">
         {#each buttons as button, i}
-            <UpgradeButton name={button.name} description={button.description} price = {checkifCanUpgrade(i,buyQuantity).totalPrice} level = {levels[i]} {pets} {i} {onUpgrade} {buyQuantity}/>
+            <UpgradeButton name={button.name} description={button.description} {pets} {i} {onUpgrade}/>
         {/each}
     </div>
 </div>

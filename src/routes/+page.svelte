@@ -37,7 +37,6 @@
     <UpgradeButtons
     pets={plrData.pets}
     buttons={upgData}
-    levels={plrData.upgradeLevels}
     {onUpgrade}
   />
 </div>
