@@ -1,6 +1,6 @@
 import { readable } from 'svelte/store';
 
-const upgradesData = readable([
+export const normalUpgradesData = readable([
     {
         name: "better petting skills",
         description: `get better at petting! (+1 pet power)`,
@@ -39,5 +39,6 @@ const upgradesData = readable([
     }
 ]);
 
+export const rebirthPrice = 1
 
-export default upgradesData
+

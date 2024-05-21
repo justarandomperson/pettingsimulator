@@ -1,10 +1,10 @@
 import { get } from "svelte/store";
 
 import {playerData} from "../assets/data/playerData.js";
-import upgradesData from "../assets/data/upgradesData.js";
+import {normalUpgradesData, rebirthPrice} from "../assets/data/upgradesData.js";
 import config from '../assets/data/config'
 
-const upgData = get(upgradesData)
+const upgData = get(normalUpgradesData)
 const cnfigData = get(config)
 
 export const checkifCanUpgrade = (i, buyQuantity) => {
@@ -34,7 +34,7 @@ export const buyMax = (basePrice,level,rate,money) => {
     const thing2 = basePrice*(rate**level)
     const stuff = Math.log((thing/thing2)+1)
     const max = Math.floor(stuff)
-    console.log(max)
+    
 }
 
 export const onUpgrade = (i) => {
@@ -43,12 +43,26 @@ export const onUpgrade = (i) => {
     const upgradeData = upgData[i]
 
     const {totalPrice, canBuy} = checkifCanUpgrade(i, buyQuantity)
-
     if (canBuy) {
-        const newData = plrData;
-        newData.pets -= totalPrice;
-        newData[upgradeData.upgrade[0]]+=upgradeData.upgrade[1]*buyQuantity
-        newData.upgradeLevels[i]+=buyQuantity;
+        plrData.pets -= totalPrice;
+        plrData[upgradeData.upgrade[0]]+=upgradeData.upgrade[1]*buyQuantity
+        plrData.upgradeLevels[i]+=buyQuantity;
+        playerData.set(plrData)
+    }
+}
+
+export const Rebirth = () => {
+    const plrData = get(playerData)
+    const {pets, rebirths} = plrData
+    const price = cnfigData.formulaFunction(rebirths, rebirthPrice)
+    if (pets>=price) {
+        plrData.pets = 0
+        plrData.petPower = 1
+        plrData.pts = 0
+        plrData.upgradeLevels = [0,0,0,0,0,0]
+        plrData.rebirthing = true
+        plrData.rebirths++
+        playerData.set(plrData)
     }
 }
 
